@@ -22,9 +22,11 @@ def sum_even(nums: List[int]) -> int:
     """Suma los enteros pares de la lista. Si no hay pares, devuelve 0."""
     return sum(n for n in nums if n % 2 == 0)
 
+
 def normalize_str(s: str) -> str:
     """Devuelve s sin espacios al inicio/fin y en minúsculas."""
     return s.strip().lower()
+
 
 def count_words(text: str) -> Dict[str,int]:
     """
@@ -46,6 +48,7 @@ def count_words(text: str) -> Dict[str,int]:
 
     return counts
 
+
 # 2) Ficheros y excepciones
 def safe_divide(a: float, b: float) -> Optional[float]:
     """Devuelve a/b. Si b==0 o hay error, devuelve None."""
@@ -55,6 +58,7 @@ def safe_divide(a: float, b: float) -> Optional[float]:
         return a / b
     except Exception:
         return None
+
 
 def read_csv_sum_revenue(path: str) -> float:
     """
@@ -98,6 +102,7 @@ def read_csv_sum_revenue(path: str) -> float:
     except Exception:
         # En caso de excepción devolvemos 0
         return 0.0
+
 
 def filter_customers_json(in_path: str, out_path: str) -> int:
     """
@@ -148,7 +153,11 @@ def filter_customers_json(in_path: str, out_path: str) -> int:
 # 3) Comprensiones, random, datetime
 def squares_of_odds(n: int) -> List[int]:
     """Lista de cuadrados de impares 1..n (ambos inclusive)."""
-    pass
+    """
+    Usando list comprehensión, recorremos la lista elevando al cuadrado cada elemento
+    y luego sacamos el módulo 2 para saber si par o no, devolviendo el resultado en la misma linea
+    """
+    return [x**2 for x in n if x % 2 != 0]
 
 def random_color(seed: int) -> str:
     """Fija random.seed(seed) y retorna un color aleatorio de ['rojo','azul','verde']."""
