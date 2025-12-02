@@ -238,4 +238,34 @@ class Vector2D:
       - __repr__(): 'Vector2D(x=?, y=?)'
       - length(self) -> float: norma Euclídea
     """
-    pass
+    def __init__(self, x: float, y: float):
+        self.x = x
+        self.y = y
+
+    def __add__(self, other: "Vector2D") -> "Vector2D":
+        """Suma vectorial."""
+        if not isinstance(other, Vector2D):
+            return NotImplemented
+        return Vector2D(self.x + other.x, self.y + other.y)
+
+    def __eq__(self, other: object) -> bool:
+        """Igualdad por componentes."""
+        if not isinstance(other, Vector2D):
+            return False
+        return self.x == other.x and self.y == other.y
+
+    def __repr__(self) -> str:
+        """Representación legible del vector."""
+        return f"Vector2D(x={self.x}, y={self.y})"
+
+    def length(self) -> float:
+        """Norma euclídea: sqrt(x^2 + y^2)."""
+        try:
+            # Convertimos a np.array
+            vec = np.array([self.x, self.y], dtype=float)
+
+            # Devolvemos el valor
+            return float(np.linalg.norm(vec))
+        except Exception:
+            # En caso de error, devolvemos 0
+            return 0.0
