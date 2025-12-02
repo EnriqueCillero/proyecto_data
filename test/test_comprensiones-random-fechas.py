@@ -26,3 +26,16 @@ def test_random_color():
     esperado = random.choice(colores)
 
     assert random_color(0) == esperado
+
+
+# --------------------------
+# TEST days_between
+# --------------------------
+def test_days_between():
+    assert days_between("2024-01-01", "2024-01-10") == 9
+    assert days_between("2024-01-10", "2024-01-01") == 9   # abs()
+    assert days_between("2024-01-01", "2024-01-01") == 0
+
+    # Caso de error: fecha inválida → retorna 0
+    assert days_between("fecha_mala", "2024-01-01") == 0
+    assert days_between("2024-01-01", "mala") == 0
