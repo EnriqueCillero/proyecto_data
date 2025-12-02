@@ -207,7 +207,28 @@ def numpy_minmax_scale(arr: List[float]) -> List[float]:
     """
     Normaliza a [0,1]. Si todos los valores son iguales, devuelve todos 0.0.
     """
-    pass
+    try:
+        # Convertimos la lista a array NumPy
+        vec = np.array(arr, dtype=float)
+
+        # Calculamos mínimo y máximo
+        min_val = np.min(vec)
+        max_val = np.max(vec)
+        diff = max_val - min_val
+
+        # Delvolvemos 0 en caso no haber diferencia entre min y max
+        if diff == 0:
+            return [0.0 for _ in arr]
+
+        # Normalización vectorizada
+        scaled = (vec - min_val) / diff
+
+        # Devolvemos una lista
+        return scaled.tolist()
+
+    except Exception:
+        print("Error durante la normalización min-max")
+        return [0.0 for _ in arr]
 
 # 5) SciPy
 def scipy_root_cos_minus_x() -> float:
