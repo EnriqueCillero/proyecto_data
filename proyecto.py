@@ -61,7 +61,43 @@ def read_csv_sum_revenue(path: str) -> float:
     Lee un CSV con columnas units_sold y unit_price.
     Convierte a numérico; ignora NaN o negativos; suma units_sold*unit_price.
     """
-    pass
+    import csv
+
+    total = 0.0
+
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            reader = csv.reader(f)
+
+            # Saltamos la cabecera
+            header = next(reader, None)
+
+            for row in reader:
+                if len(row) < 2:
+                    continue  # fila inválida, no contiene todos los datos
+
+                try:
+                    units = float(row[0])
+                    price = float(row[1])
+
+                    # Ignoramos negativos, no tiene sentido que tegamos stock negativo o precios negativos
+                    if units < 0 or price < 0:
+                        continue
+
+                    total += units * price
+
+                except Exception:
+                    # Ignoranamos excepciones generales durante la conversión
+                    continue
+
+        return total
+
+    except FileNotFoundError:
+        # En caso de encontrar el archivo, devolvemos 0
+        return 0.0
+    except Exception:
+        # En caso de excepción devolvemos 0
+        return 0.0
 
 def filter_customers_json(in_path: str, out_path: str) -> int:
     """
