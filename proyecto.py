@@ -174,7 +174,20 @@ def random_color(seed: int) -> str:
 
 def days_between(d1: str, d2: str) -> int:
     """Recibe fechas 'YYYY-MM-DD'. Devuelve abs(d2-d1) en días (entero)."""
-    pass
+    try:
+        # Intentamos convertir la fecha en el formato indicado al formato datetime de python
+        f1 = datetime.strptime(d1, "%Y-%m-%d")
+        f2 = datetime.strptime(d2, "%Y-%m-%d")
+
+        # Restamos la fecha, obetieniendo un timedelta
+        diff = f2 - f1
+
+        # Retornamos el resultado absoluto de la resta para no tener que ordenar la fechas
+        return abs(diff.days)
+    except Exception:
+        # En caso de error de coversion, deveolvemos un 0 e informamos al usuario
+        print("Error durante la conversión de las fechas provistas")
+        return 0
 
 # 4) NumPy
 def numpy_vector_length(v: List[float]) -> float:
