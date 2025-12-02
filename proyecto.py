@@ -49,7 +49,12 @@ def count_words(text: str) -> Dict[str,int]:
 # 2) Ficheros y excepciones
 def safe_divide(a: float, b: float) -> Optional[float]:
     """Devuelve a/b. Si b==0 o hay error, devuelve None."""
-    pass
+    try:
+        if b == 0:
+            return None
+        return a / b
+    except Exception:
+        return None
 
 def read_csv_sum_revenue(path: str) -> float:
     """
