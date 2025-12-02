@@ -105,7 +105,45 @@ def filter_customers_json(in_path: str, out_path: str) -> int:
     Escribe en out_path solo clientes con email que contenga '@' y age > 0.
     Devuelve el número de clientes escritos.
     """
-    pass
+    try:
+        # Leemos el JSON de entrada
+        with open(in_path, "r", encoding="utf-8") as f:
+             # Cargamos el JSON en un diccionario
+            data = json.load(f)    
+
+        valid_customers = []
+
+        # Recorremos y filtramos la información
+        for customer in data:
+            email = customer.get("email", "")
+            age = customer.get("age", 0)
+
+            # Filtramos por las condiciones expuestas en el enunciado
+            if "@" in email and age > 0:
+                valid_customers.append(customer)
+
+        # Escribimos el resultado en path de salida
+        with open(out_path, "w", encoding="utf-8") as f:
+            json.dump(valid_customers, f)
+
+        # Devolvemos la longituad de la lista que hemos creado a partir de los filtros
+        return len(valid_customers)
+
+    except FileNotFoundError:
+        # Informamos al usurio del error
+        print("Error: Archivo no encontrado")
+        # Archivo no encontrado, retornamos 0
+        return 0
+    except json.JSONDecodeError:
+        # Informamos al usurio del error
+        print("Error: Json inválido")
+        # JSON inválido, retornamos 0 
+        return 0
+    except Exception:
+        # Informamos al usurio del error
+        print("Error desconocido durate el filtrado de datos")
+        # Error general, retornamos 0
+        return 0
 
 # 3) Comprensiones, random, datetime
 def squares_of_odds(n: int) -> List[int]:
