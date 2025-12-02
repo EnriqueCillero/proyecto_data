@@ -20,7 +20,7 @@ from scipy import optimize, integrate, interpolate
 # 1) Básicos y cadenas
 def sum_even(nums: List[int]) -> int:
     """Suma los enteros pares de la lista. Si no hay pares, devuelve 0."""
-    pass
+    return sum(n for n in nums if n % 2 == 0)
 
 def normalize_str(s: str) -> str:
     """Devuelve s sin espacios al inicio/fin y en minúsculas."""
