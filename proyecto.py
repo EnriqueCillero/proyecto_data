@@ -24,7 +24,7 @@ def sum_even(nums: List[int]) -> int:
 
 def normalize_str(s: str) -> str:
     """Devuelve s sin espacios al inicio/fin y en minúsculas."""
-    pass
+    return s.strip().lower()
 
 def count_words(text: str) -> Dict[str,int]:
     """
