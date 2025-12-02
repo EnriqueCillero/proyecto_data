@@ -31,7 +31,20 @@ def count_words(text: str) -> Dict[str,int]:
     Devuelve un dict palabra->frecuencia.
     Reglas: separa por espacios; elimina . , ; : ! ? al final de cada token; ignora mayúsculas.
     """
-    pass
+    trailing = ".,;:!?"
+
+    tokens = text.split()
+    counts: Dict[str, int] = {}
+
+    for token in tokens:
+        cleaned = token.rstrip(trailing).lower()
+
+        if cleaned == "":
+            continue
+
+        counts[cleaned] = counts.get(cleaned, 0) + 1
+
+    return counts
 
 # 2) Ficheros y excepciones
 def safe_divide(a: float, b: float) -> Optional[float]:
