@@ -235,7 +235,10 @@ def numpy_vector_length(v: List[float]) -> float:
 
         # Calculamos la norma Euclídea usando np.linalg.norm
         return float(np.linalg.norm(arr))
-
+    except (TypeError, ValueError):
+        # Entradas no numéricas o no iterables, devolvemos valor por defecto e informamos
+        print("Error en los datos de entrada de la funcion")
+        return 0.0
     except Exception:
         print("Error calculando la norma del vector con NumPy")
         return 0.0
@@ -263,7 +266,9 @@ def numpy_minmax_scale(arr: List[float]) -> List[float]:
 
         # Devolvemos una lista
         return scaled.tolist()
-
+    except (TypeError, ValueError):
+        print("Error en los datos de entrada de la funcion")
+        return [0.0 for _ in arr]
     except Exception:
         print("Error durante la normalización min-max")
         return [0.0 for _ in arr]
