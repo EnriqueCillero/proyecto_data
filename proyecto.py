@@ -481,6 +481,10 @@ class Vector2D:
 
             # Devolvemos el valor
             return float(np.linalg.norm(vec))
+        
+        except (TypeError, ValueError):
+            # Coordenadas no numéricas
+            return 0.0
         except Exception:
             # En caso de error, devolvemos 0
             return 0.0
