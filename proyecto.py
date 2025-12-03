@@ -20,11 +20,15 @@ from scipy import optimize, integrate, interpolate
 # 1) Básicos y cadenas
 def sum_even(nums: List[int]) -> int:
     """Suma los enteros pares de la lista. Si no hay pares, devuelve 0."""
+
+    # Usando list comprehension, recorremos la lista usando el módulo 2 para devolver la suma solo de los número pares
     return sum(n for n in nums if n % 2 == 0)
 
 
 def normalize_str(s: str) -> str:
     """Devuelve s sin espacios al inicio/fin y en minúsculas."""
+
+    # Usamos las funciones strip y lower de string para quitar los espacioes y pasar todo a minuscula
     return s.strip().lower()
 
 
@@ -33,19 +37,30 @@ def count_words(text: str) -> Dict[str,int]:
     Devuelve un dict palabra->frecuencia.
     Reglas: separa por espacios; elimina . , ; : ! ? al final de cada token; ignora mayúsculas.
     """
+
+    # Guardamos los caracteres no deseados
     trailing = ".,;:!?"
 
+    # Dividimos el texto en palabras separadas, al no pasar argumento se usaran los espacios
     tokens = text.split()
+
+    # Guardamos un dicciones clave valor (palabra:numero de veces que aparece)
     counts: Dict[str, int] = {}
 
+    # Recorremos la lista de palabras
     for token in tokens:
+
+        # Eliminamos los carateres no deseados y pasamos a minusculas
         cleaned = token.rstrip(trailing).lower()
 
+        # En caso de que la palabra solo contenga carateres no deseamos, pasamos a la proxima iteracion
         if cleaned == "":
             continue
-
+        
+        # Sumamos 1 a la key del diccionario, en caso de no tener le pasamos el valor por defecto (0) y sumamos 1
         counts[cleaned] = counts.get(cleaned, 0) + 1
 
+    # Devolvemos el dicionario con el resultado
     return counts
 
 
@@ -53,10 +68,19 @@ def count_words(text: str) -> Dict[str,int]:
 def safe_divide(a: float, b: float) -> Optional[float]:
     """Devuelve a/b. Si b==0 o hay error, devuelve None."""
     try:
+        # Hacemos la comprobación, evitando asi la excepcion ZeroDivisionError
         if b == 0:
             return None
+        
+        # Retornamos la división 
         return a / b
+    
+    except TypeError:
+        # Cuando a o b no son valores numéricos retornamos None e informamos al usuario
+        print("Uno o más argumentos de la función no son númericos")
+        return None
     except Exception:
+        # Último recurso para errores no previstos
         return None
 
 
