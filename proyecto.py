@@ -77,6 +77,8 @@ def safe_divide(a: float, b: float) -> Optional[float]:
     
     except TypeError:
         # Cuando a o b no son valores numéricos retornamos None e informamos al usuario
+        # Indicar que esto se hace porque a pesar de indicar los tipos, python no lo tiene en cuenta
+        # y se podrian pasar valores invalidos. 
         print("Uno o más argumentos de la función no son númericos")
         return None
     except Exception:
@@ -122,6 +124,8 @@ def read_csv_sum_revenue(path: str) -> float:
 
     except FileNotFoundError:
         # En caso de encontrar el archivo, devolvemos 0
+        return 0.0
+    except PermissionError:
         return 0.0
     except Exception:
         # En caso de excepción devolvemos 0
