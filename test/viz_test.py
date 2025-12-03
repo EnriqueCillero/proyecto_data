@@ -16,3 +16,21 @@ def test_plot_line_time_series():
     # Debe devolver True y el archivo debe existir
     assert result is True
     assert os.path.exists(out_path)
+
+
+# --------------------------
+# TEST plot_bar
+# --------------------------
+def test_plot_bar():
+    out_path = "figures/test_bar.png"
+
+    categories = ["A", "B", "C"]
+    values = [5, 10, 7]
+
+    result = plot_bar(categories, values, out_path)
+
+    # Debe devolver True y el archivo debe existir
+    assert result is True
+    assert os.path.exists(out_path)
+
+
