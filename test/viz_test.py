@@ -1,0 +1,18 @@
+import os
+from proyecto import plot_line_time_series, plot_bar, plot_scatter
+
+
+# --------------------------
+# TEST plot_line_time_series
+# --------------------------
+def test_plot_line_time_series():
+    out_path = "figures/test_line.png"
+
+    xs = [0, 1, 2, 3]
+    ys = [10, 15, 8, 20]
+
+    result = plot_line_time_series(xs, ys, out_path)
+
+    # Debe devolver True y el archivo debe existir
+    assert result is True
+    assert os.path.exists(out_path)
