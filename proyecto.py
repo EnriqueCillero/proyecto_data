@@ -9,7 +9,7 @@ Instrucciones generales:
 """
 
 # === IMPORTS (añade otros si son necesarios) ===
-import csv, json, os, random, math
+import csv, json, os, random
 from datetime import datetime
 from typing import List, Dict, Optional
 
