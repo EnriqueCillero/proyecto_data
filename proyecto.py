@@ -150,6 +150,7 @@ def filter_customers_json(in_path: str, out_path: str) -> int:
         # Error general, retornamos 0
         return 0
 
+
 # 3) Comprensiones, random, datetime
 def squares_of_odds(n: int) -> List[int]:
     """Lista de cuadrados de impares 1..n (ambos inclusive)."""
@@ -158,6 +159,7 @@ def squares_of_odds(n: int) -> List[int]:
     y luego sacamos el módulo 2 para saber si par o no, devolviendo el resultado en la misma linea
     """
     return [x**2 for x in n if x % 2 != 0]
+
 
 def random_color(seed: int) -> str:
     """Fija random.seed(seed) y retorna un color aleatorio de ['rojo','azul','verde']."""
@@ -189,6 +191,7 @@ def days_between(d1: str, d2: str) -> int:
         print("Error durante la conversión de las fechas provistas")
         return 0
 
+
 # 4) NumPy
 def numpy_vector_length(v: List[float]) -> float:
     """Norma Euclídea de v con NumPy."""
@@ -202,6 +205,7 @@ def numpy_vector_length(v: List[float]) -> float:
     except Exception:
         print("Error calculando la norma del vector con NumPy")
         return 0.0
+
 
 def numpy_minmax_scale(arr: List[float]) -> List[float]:
     """
@@ -249,9 +253,20 @@ def scipy_root_cos_minus_x() -> float:
         # Por seguir un poco la linea de el resto de funciones, devolvemos 0
         return 0.0
 
+
 def scipy_integral_sin() -> float:
     """Integral de sin(x) de 0 a pi con integrate.quad. Devuelve el área."""
-    pass
+    try:
+        # Calculamos la integral definidoa de la funcion np.sin, usando de límites 0 y np.pi y lo guardamos en una tupla
+        result, _ = integrate.quad(np.sin, 0, np.pi)
+
+        # Devolvemos solo el resultado sin el error estimado con el tipo de la cabecera
+        return float(result)
+    
+    except Exception:
+        # En caso de error, devolvemos 0 e informamos al usuario
+        print("Error calculando la integral con SciPy")
+        return 0.0
 
 def interp_linear(x: List[float], y: List[float], xq: float) -> float:
     """Interpolación lineal: devuelve f(xq) usando interpolate.interp1d."""
