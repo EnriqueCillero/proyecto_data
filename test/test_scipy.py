@@ -2,6 +2,7 @@ import numpy as np
 
 from proyecto import (
     scipy_root_cos_minus_x,
+    scipy_integral_sin,
 )
 
 
@@ -17,4 +18,10 @@ def test_scipy_root_cos_minus_x():
     assert abs(value) < 1e-6
 
 
-
+# --------------------------
+# TEST scipy_integral_sin
+# --------------------------
+def test_scipy_integral_sin():
+    # Integral de sin(x) entre 0 y pi debe ser exactamente 2
+    result = scipy_integral_sin()
+    assert abs(result - 2.0) < 1e-6
