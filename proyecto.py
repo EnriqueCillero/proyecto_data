@@ -230,10 +230,24 @@ def numpy_minmax_scale(arr: List[float]) -> List[float]:
         print("Error durante la normalización min-max")
         return [0.0 for _ in arr]
 
+
 # 5) SciPy
 def scipy_root_cos_minus_x() -> float:
     """Raíz de f(x)=cos(x)-x con optimize.root, x0=0.5."""
-    pass
+    try:
+        # Definimos la funcion lambda y la guardamos en una variable
+        f = lambda x: np.cos(x) - x
+
+        # Utilizamos la funcion de scipy para en encontrar un valor en la función f(x) y le pasamos el valor incial indicado
+        sol = optimize.root(f, x0=0.5)
+
+        # Retornamos el primer valor del vector casteado a float como se indica en la función
+        return float(sol.x[0])
+    
+    except Exception:
+        print("Error calculando la raíz con SciPy")
+        # Por seguir un poco la linea de el resto de funciones, devolvemos 0
+        return 0.0
 
 def scipy_integral_sin() -> float:
     """Integral de sin(x) de 0 a pi con integrate.quad. Devuelve el área."""
