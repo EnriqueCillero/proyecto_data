@@ -347,7 +347,37 @@ def plot_bar(categories: List[str], values: List[float], out_path: str) -> bool:
 
 def plot_scatter(x: List[float], y: List[float], out_path: str) -> bool:
     """Dispersión con grid y legend (usa label). Guarda y devuelve True si existe."""
-    pass
+    try:
+        # Creamos la figura
+        plt.figure()
+
+        # Dibujamos el grafico de dispersion, añadiendo la  label
+        plt.scatter(x, y, label="Datos")
+
+        # Activavamos el  grid
+        plt.grid(True)
+
+        # Añadimos la leyenda
+        plt.legend()
+
+        # Añadimos título y etiquetas
+        plt.title("Gráfico de dispersión")
+        plt.xlabel("X")
+        plt.ylabel("Y")
+
+        # Guardamos el gráfico
+        plt.savefig(out_path)
+
+        # Liberamos memoria
+        plt.close()
+
+        # Comprobamos que el archivo se ha guardado correctamente
+        return os.path.exists(out_path)
+
+    except Exception:
+        # Informamos al usuario del error y retornamos false
+        print("Error generando gráfico de dispersión")
+        return False
 
 # 7) POO
 class Vector2D:
