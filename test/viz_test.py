@@ -34,3 +34,17 @@ def test_plot_bar():
     assert os.path.exists(out_path)
 
 
+# --------------------------
+# TEST plot_scatter
+# --------------------------
+def test_plot_scatter():
+    out_path = "figures/test_scatter.png"
+
+    x = [1, 2, 3, 4]
+    y = [2, 4, 6, 8]
+
+    result = plot_scatter(x, y, out_path)
+
+    # Debe devolver True y el archivo debe existir
+    assert result is True
+    assert os.path.exists(out_path)
