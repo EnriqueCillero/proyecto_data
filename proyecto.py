@@ -187,11 +187,8 @@ def filter_customers_json(in_path: str, out_path: str) -> int:
 # 3) Comprensiones, random, datetime
 def squares_of_odds(n: int) -> List[int]:
     """Lista de cuadrados de impares 1..n (ambos inclusive)."""
-    """
-    Usando list comprehensión, recorremos la lista elevando al cuadrado cada elemento
-    y luego sacamos el módulo 2 para saber si par o no, devolviendo el resultado en la misma linea
-    """
-    return [x**2 for x in n if x % 2 != 0]
+    # Genera una lista con el cuadrado de cada número impar entre 1 y n (incluidos).
+    return [x**2 for x in range(1, n+1) if x % 2 != 0]
 
 
 def random_color(seed: int) -> str:
@@ -219,6 +216,10 @@ def days_between(d1: str, d2: str) -> int:
 
         # Retornamos el resultado absoluto de la resta para no tener que ordenar la fechas
         return abs(diff.days)
+    except ValueError:
+        # Formato incorrecto de fecha
+        print("Error en el formato de fecha provista a la funcion" )
+        return 0
     except Exception:
         # En caso de error de coversion, deveolvemos un 0 e informamos al usuario
         print("Error durante la conversión de las fechas provistas")

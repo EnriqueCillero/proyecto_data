@@ -6,10 +6,21 @@ from proyecto import squares_of_odds, random_color, days_between
 # TEST squares_of_odds
 # --------------------------
 def test_squares_of_odds():
-    assert squares_of_odds([1, 2, 3, 4, 5]) == [1, 9, 25]
-    assert squares_of_odds([]) == []
-    assert squares_of_odds([2, 4, 6]) == []        # todos pares
-    assert squares_of_odds([1]) == [1]
+    # Impares entre 1 y 5 → 1, 3, 5 → cuadrados: 1, 9, 25
+    assert squares_of_odds(5) == [1, 9, 25]
+
+    # n = 0 → rango vacío
+    assert squares_of_odds(0) == []
+
+    # n = 1 → solo 1 es impar
+    assert squares_of_odds(1) == [1]
+
+    # n = 2 → solo 1 es impar
+    assert squares_of_odds(2) == [1]
+
+    # n = 10 → impares: 1,3,5,7,9 → cuadrados: 1,9,25,49,81
+    assert squares_of_odds(10) == [1, 9, 25, 49, 81]
+
 
 
 # --------------------------
