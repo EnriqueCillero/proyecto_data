@@ -91,8 +91,6 @@ def read_csv_sum_revenue(path: str) -> float:
     Lee un CSV con columnas units_sold y unit_price.
     Convierte a numérico; ignora NaN o negativos; suma units_sold*unit_price.
     """
-    import csv
-
     total = 0.0
 
     try:
@@ -438,6 +436,7 @@ def plot_scatter(x: List[float], y: List[float], out_path: str) -> bool:
         return False
     except OSError:
         print("Error en el path o ausencia de permisos en el mismo")
+        return False
     except Exception:
         # Informamos al usuario del error y retornamos false
         print("Error generando gráfico de dispersión")

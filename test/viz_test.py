@@ -1,10 +1,11 @@
 import os
+from pathlib import Path
 from proyecto import plot_line_time_series, plot_bar, plot_scatter
 
 
 
 # Guardamos el path base que queremos utilizar y creamos la carpeta
-BASE_PATH = os.Path(__file__).resolve().parent.parent
+BASE_PATH = Path(__file__).resolve().parent.parent
 FIGURES = BASE_PATH / "figures"
 FIGURES.mkdir(exist_ok=True)
 
