@@ -313,12 +313,37 @@ def plot_line_time_series(xs: List[float], ys: List[float], out_path: str) -> bo
         return os.path.exists(out_path)
 
     except Exception:
+        # Informamos al usuario en caso de error y retornamos false
         print("Error generando gráfico de línea")
         return False
 
 def plot_bar(categories: List[str], values: List[float], out_path: str) -> bool:
     """Barras con etiquetas. Guarda y devuelve True si existe."""
-    pass
+    try:
+        # Creamos la figura
+        plt.figure()
+
+        # Dibujamos las barras
+        plt.bar(categories, values)
+
+        # Creamos título y etiquetas
+        plt.title("Diagrama de barras")
+        plt.xlabel("Categorías")
+        plt.ylabel("Valores")
+
+        # Guardamos la figura en el path provisto
+        plt.savefig(out_path)
+
+        # Cerramos para liberar memoria
+        plt.close()
+
+        # Retornamos la comprobación de la exitencia de la figura en nuetro path
+        return os.path.exists(out_path)
+
+    except Exception:
+        # Informamos al usuario en caso de error y retornamos false
+        print("Error generando gráfico de barras")
+        return False
 
 def plot_scatter(x: List[float], y: List[float], out_path: str) -> bool:
     """Dispersión con grid y legend (usa label). Guarda y devuelve True si existe."""
