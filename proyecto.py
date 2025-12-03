@@ -286,7 +286,10 @@ def scipy_root_cos_minus_x() -> float:
 
         # Retornamos el primer valor del vector casteado a float como se indica en la función
         return float(sol.x[0])
-    
+
+    except (ValueError, TypeError):
+        print("Error en los datos de entrada de la funcion")
+        return 0.0
     except Exception:
         print("Error calculando la raíz con SciPy")
         # Por seguir un poco la linea de el resto de funciones, devolvemos 0
@@ -302,6 +305,9 @@ def scipy_integral_sin() -> float:
         # Devolvemos solo el resultado sin el error estimado con el tipo de la cabecera
         return float(result)
     
+    except (ValueError, TypeError):
+        print("Error en los datos de entrada de la funcion")
+        return 0.0
     except Exception:
         # En caso de error, devolvemos 0 e informamos al usuario
         print("Error calculando la integral con SciPy")
@@ -319,7 +325,10 @@ def interp_linear(x: List[float], y: List[float], xq: float) -> float:
 
         # Utilizamos la funcion y convertimos a float el resultado para respetar la cabecera.
         return float(f(xq))
-
+    
+    except (ValueError, TypeError):
+        print("Error en los datos de entrada de la funcion")
+        return 0.0
     except Exception:
         # Se informa del error y se devuelve 0.0 como valor por defecto.
         print("Error durante la interpolación lineal")
