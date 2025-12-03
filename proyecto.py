@@ -291,7 +291,30 @@ def plot_line_time_series(xs: List[float], ys: List[float], out_path: str) -> bo
     """
     Dibuja línea con título y etiquetas. Guarda en out_path y devuelve True si existe.
     """
-    pass
+    try:
+        # Creamos la figura
+        plt.figure()
+        
+        # Dibujamos la línea
+        plt.plot(xs, ys)
+
+        # Añadimos título y etiquetas
+        plt.title("Serie temporal")
+        plt.xlabel("Tiempo")
+        plt.ylabel("Valor")
+
+        # Guardamos la imagen
+        plt.savefig(out_path)
+
+        # Liberamos memoria
+        plt.close()
+
+        # Comprobamos que se ha guardado correctamente
+        return os.path.exists(out_path)
+
+    except Exception:
+        print("Error generando gráfico de línea")
+        return False
 
 def plot_bar(categories: List[str], values: List[float], out_path: str) -> bool:
     """Barras con etiquetas. Guarda y devuelve True si existe."""
