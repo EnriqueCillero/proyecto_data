@@ -359,7 +359,12 @@ def plot_line_time_series(xs: List[float], ys: List[float], out_path: str) -> bo
 
         # Comprobamos que se ha guardado correctamente
         return os.path.exists(out_path)
-
+    
+    except (TypeError, ValueError):
+        print("Error en los datos de entrada de la funcion")
+        return False
+    except OSError:
+        print("Error en el path o ausencia de permisos en el mismo")
     except Exception:
         # Informamos al usuario en caso de error y retornamos false
         print("Error generando gráfico de línea")
@@ -387,7 +392,13 @@ def plot_bar(categories: List[str], values: List[float], out_path: str) -> bool:
 
         # Retornamos la comprobación de la exitencia de la figura en nuetro path
         return os.path.exists(out_path)
-
+    
+    except (TypeError, ValueError):
+        print("Error en los datos de entrada de la funcion")
+        return False
+    except OSError:
+        print("Error en el path o ausencia de permisos en el mismo")
+        return False
     except Exception:
         # Informamos al usuario en caso de error y retornamos false
         print("Error generando gráfico de barras")
@@ -421,7 +432,12 @@ def plot_scatter(x: List[float], y: List[float], out_path: str) -> bool:
 
         # Comprobamos que el archivo se ha guardado correctamente
         return os.path.exists(out_path)
-
+    
+    except (TypeError, ValueError):
+        print("Error en los datos de entrada de la funcion")
+        return False
+    except OSError:
+        print("Error en el path o ausencia de permisos en el mismo")
     except Exception:
         # Informamos al usuario del error y retornamos false
         print("Error generando gráfico de dispersión")
