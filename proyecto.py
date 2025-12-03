@@ -270,7 +270,21 @@ def scipy_integral_sin() -> float:
 
 def interp_linear(x: List[float], y: List[float], xq: float) -> float:
     """Interpolación lineal: devuelve f(xq) usando interpolate.interp1d."""
-    pass
+    try:
+        # Con interp1d creamos una función de interpolación lineal a partir de dos listas:
+        #   - x: puntos conocidos del eje X
+        #   - y: valores conocidos correspondientes en el eje Y
+        # kind="linear" indica que la interpolación será de tipo lineal.
+        # fill_value="extrapolate" permite evaluar xq aunque esté fuera del rango de x.
+        f = interpolate.interp1d(x, y, kind="linear", fill_value="extrapolate")
+
+        # Utilizamos la funcion y convertimos a float el resultado para respetar la cabecera.
+        return float(f(xq))
+
+    except Exception:
+        # Se informa del error y se devuelve 0.0 como valor por defecto.
+        print("Error durante la interpolación lineal")
+        return 0.0
 
 # 6) Visualización
 def plot_line_time_series(xs: List[float], ys: List[float], out_path: str) -> bool:
