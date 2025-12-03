@@ -167,6 +167,11 @@ def filter_customers_json(in_path: str, out_path: str) -> int:
         print("Error: Archivo no encontrado")
         # Archivo no encontrado, retornamos 0
         return 0
+    except PermissionError:
+        # Informamos al usurio del error
+        print("Error: No hay permisos en la carpeta solicitada")
+        # Sin permisos, retornamos 0
+        return 0
     except json.JSONDecodeError:
         # Informamos al usurio del error
         print("Error: Json inválido")
